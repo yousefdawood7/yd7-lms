@@ -120,3 +120,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+iframe {
+  /* For Fixing Google's one tap styles issues on dark mode */
+  color-scheme: light;
+}

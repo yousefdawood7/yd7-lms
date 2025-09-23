@@ -1,6 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import companyLogo from "public/company-logo.png";
+import { buttonVariants } from "@/components/ui/button";
+console.log(companyLogo);
 
 export default function AuthLayout({
   children,
@@ -19,6 +22,14 @@ export default function AuthLayout({
         <ArrowLeft className="size-5" />
         <span className="text-xl">Back</span>
       </Link>
+
+      <Image
+        className="relative -top-10 -z-1 -mb-35"
+        src={companyLogo}
+        alt="Company Logo"
+        width={325}
+        height={325}
+      />
 
       <div className="w-full max-w-[450px]">{children}</div>
       <footer className="text-muted-foreground max-w-[386px] text-center leading-[1.5] text-balance">

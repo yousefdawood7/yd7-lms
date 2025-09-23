@@ -1,3 +1,20 @@
+import { oneTapClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
-export const authClient = createAuthClient({});
+import { env } from "./env";
+
+export const authClient = createAuthClient({
+  plugins: [
+    oneTapClient({
+      clientId: env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      autoSelect: false,
+      cancelOnTapOutside: true,
+      context: "signin",
+
+      promptOptions: {
+        baseDelay: 1000, // Base delay in ms (default: 1000)
+        maxAttempts: 1, // Maximum number of attempts before triggering onPromptNotification (default: 5)
+      },
+    }),
+  ],
+});
