@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,8 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import OauthForm from "@/features/auth/OauthForm";
+import EmailForm from "@/features/auth/providers/Email/EmailForm";
 
 export default function page() {
   return (
@@ -27,11 +26,7 @@ export default function page() {
       </CardContent>
       <CardFooter>
         <div className="flex w-full flex-col gap-y-3.5">
-          <p className="text-xl font-semibold">Email</p>
-          <Input placeholder="me@example.com" />
-          <Button className="font-semibold tracking-tight">
-            Continue with Email
-          </Button>
+          <EmailForm />
         </div>
       </CardFooter>
     </Card>

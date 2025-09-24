@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import companyLogo from "public/company-logo.png";
 import { buttonVariants } from "@/components/ui/button";
-console.log(companyLogo);
 
 export default function AuthLayout({
   children,
@@ -34,11 +33,11 @@ export default function AuthLayout({
       <div className="w-full max-w-[450px]">{children}</div>
       <footer className="text-muted-foreground max-w-[386px] text-center leading-[1.5] text-balance">
         By clicking continue, you agree to our{" "}
-        <span className="hover:text-primary cursor-pointer hover:underline">
+        <span className="hover:text-primary cursor-pointer underline hover:underline">
           Terms of service
         </span>{" "}
         and{" "}
-        <span className="hover:text-primary cursor-pointer hover:underline">
+        <span className="hover:text-primary cursor-pointer underline hover:underline">
           Privacy Policy
         </span>
       </footer>
