@@ -1,15 +1,12 @@
+import LetterAvatar from "react-avatar";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
-  BoltIcon,
   BookOpenIcon,
   ChevronDownIcon,
   Home,
-  Layers2Icon,
   LayoutDashboard,
   LogOutIcon,
-  PinIcon,
-  UserPenIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -36,6 +33,10 @@ export default function DropDownUser({
 }) {
   const router = useRouter();
 
+  const computedLetter = name
+    ? name.split(" ")[0].toUpperCase()
+    : email[0].toUpperCase();
+
   async function handleSignOut() {
     await authClient.signOut({
       fetchOptions: {
@@ -46,6 +47,7 @@ export default function DropDownUser({
       },
     });
   }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -54,8 +56,8 @@ export default function DropDownUser({
             {image ? (
               <AvatarImage src={image} alt="Profile image" />
             ) : (
-              <AvatarFallback>
-                {name.split(" ")[0].slice(1).toUpperCase()}
+              <AvatarFallback className="font-semibold">
+                <LetterAvatar size="70" name={computedLetter} />
               </AvatarFallback>
             )}
           </Avatar>

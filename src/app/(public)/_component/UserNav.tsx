@@ -8,6 +8,7 @@ import { authClient } from "@/lib/auth-client";
 
 export default function UserNav() {
   const { data: session, isPending } = authClient.useSession();
+  console.log(session);
 
   return (
     <div className="ml-auto">

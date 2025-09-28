@@ -14,7 +14,7 @@ export default function NavList() {
   const pathname = usePathname();
 
   return (
-    <ul className="xs:flex hidden items-center gap-4">
+    <ul className="hidden items-center gap-4 sm:flex">
       {navItems.map((item) => (
         <li
           key={item.href}
