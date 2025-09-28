@@ -1,7 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import companyLogo from "public/company-logo.png";
+import CompanyImage from "@/app/(auth)/_component/CompanyImage";
 import { buttonVariants } from "@/components/ui/button";
 
 export default function AuthLayout({
@@ -10,7 +9,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-svh flex-col items-center justify-center gap-y-5.5">
+    <div className="relative flex min-h-svh flex-col items-center justify-center gap-y-5.5 px-2.5">
       <Link
         href={"/"}
         className={buttonVariants({
@@ -22,13 +21,7 @@ export default function AuthLayout({
         <span className="text-xl">Back</span>
       </Link>
 
-      <Image
-        className="relative -top-10 -z-1 -mb-35"
-        src={companyLogo}
-        alt="Company Logo"
-        width={325}
-        height={325}
-      />
+      <CompanyImage />
 
       <div className="w-full max-w-[450px]">{children}</div>
       <footer className="text-muted-foreground max-w-[386px] text-center leading-[1.5] text-balance">
