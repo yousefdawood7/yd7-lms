@@ -11,6 +11,9 @@
     "email": "email dev --dir src/features/emails"
   },
   "dependencies": {
+    "@arcjet/inspect": "^1.0.0-beta.12",
+    "@arcjet/ip": "^1.0.0-beta.12",
+    "@arcjet/next": "^1.0.0-beta.12",
     "@prisma/client": "^6.16.2",
     "@radix-ui/react-slot": "^1.2.3",
     "@react-email/components": "^0.5.4",

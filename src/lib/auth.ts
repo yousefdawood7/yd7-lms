@@ -23,7 +23,7 @@ export const auth = betterAuth({
 
             attachments: [
               {
-                path: "https://gcdnb.pbrd.co/images/cH72oyhwbWiY.png?o=1",
+                path: "https://gcdnb.pbrd.co/images/cH72oyhwbWiY.png?o=1", // App logo
                 filename: "logo.png",
                 contentId: "logo-img",
               },
