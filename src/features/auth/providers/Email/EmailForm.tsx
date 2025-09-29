@@ -51,8 +51,13 @@ export default function EmailForm() {
         placeholder="me@example.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        required
       />
-      <Button onClick={handleSignIn} className="font-semibold tracking-tight">
+      <Button
+        onClick={handleSignIn}
+        className="font-semibold tracking-tight transition-opacity"
+        disabled={isPending || !email}
+      >
         {isPending ? (
           <>
             <LoaderCircle className="animate-spin" />

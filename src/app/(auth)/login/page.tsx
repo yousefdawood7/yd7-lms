@@ -1,5 +1,3 @@
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -10,15 +8,8 @@ import {
 } from "@/components/ui/card";
 import OauthForm from "@/features/auth/OauthForm";
 import EmailForm from "@/features/auth/providers/Email/EmailForm";
-import { auth } from "@/lib/auth";
 
 export default async function page() {
-  const session = await auth.api.getSession({ headers: await headers() });
-
-  // prettier-ignore
-  if (session)
-    return redirect("/");
-
   return (
     <Card>
       <CardHeader>
