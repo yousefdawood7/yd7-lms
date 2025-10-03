@@ -23,7 +23,6 @@ const emailOptions = {
 const botOptions = {
   mode: "LIVE",
   // configured with a list of bots to allow from
-  // https://arcjet.com/bot-list
   allow: [], // prevents bots from submitting the form
 } satisfies BotOptions;
 
@@ -58,14 +57,12 @@ async function protect(req: NextRequest): Promise<ArcjetDecision> {
   }
 
   // If this is a signup then use the special protectSignup rule
-  // See https://docs.arcjet.com/signup-protection/quick-start
   if (req.nextUrl.pathname.startsWith("/api/auth/sign-up")) {
     // Better-Auth reads the body, so we need to clone the request preemptively
     const body = await req.clone().json();
 
     // If the email is in the body of the request then we can run
     // the email validation checks as well. See
-    // https://www.better-auth.com/docs/concepts/hooks#example-enforce-email-domain-restriction
     if (typeof body.email === "string") {
       return aj
         .withRule(protectSignup(signupOptions))

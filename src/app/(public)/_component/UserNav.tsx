@@ -9,6 +9,8 @@ import { authClient } from "@/lib/auth-client";
 export default function UserNav() {
   const { data: session, isPending } = authClient.useSession();
 
+  console.log(isPending, session);
+
   return (
     <div className="ml-auto">
       <aside className="flex items-center gap-3">

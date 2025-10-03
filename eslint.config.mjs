@@ -35,6 +35,7 @@ const eslintConfig = [
       "simple-import-sort/exports": "warn",
     },
   },
+
   {
     ignores: [
       "node_modules/**",
@@ -42,6 +43,7 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      "src/generated/**",
     ],
   },
 ];

@@ -50,7 +50,10 @@ export default function DropDownUser({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger
+        asChild
+        className="focus-visible:ring-0 focus-visible:ring-offset-0"
+      >
         <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
           <Avatar className="size-10">
             {image ? (
