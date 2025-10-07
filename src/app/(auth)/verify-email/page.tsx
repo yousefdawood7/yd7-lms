@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import EmailOTP from "@/features/auth/providers/Email/EmailOTP";
+import EmailOTP from "@/features/auth/_components/providers/Email/EmailOTP";
 
 type PageProps = {
   searchParams: Promise<{ email: string }>;

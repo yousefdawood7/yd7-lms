@@ -27,7 +27,7 @@ export default function EmailOTP({ email }: { email: string }) {
   const [isTransitioning, startTransition] = useTransition();
   const [OTP, setOTP] = useState<string>("");
   const router = useRouter();
-  const { name } = useName();
+  const { name, resetName } = useName();
 
   const isPending = useSpinDelay(isTransitioning, {
     delay: 300,
@@ -42,6 +42,10 @@ export default function EmailOTP({ email }: { email: string }) {
 
         fetchOptions: {
           onSuccess: async () => {
+            await authClient.updateUser({
+              name,
+            });
+            resetName();
             router.replace("/");
             toast.success("You signed in successfully");
           },

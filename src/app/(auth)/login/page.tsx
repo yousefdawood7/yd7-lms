@@ -6,8 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import OauthForm from "@/features/auth/OauthForm";
-import EmailForm from "@/features/auth/providers/Email/EmailForm";
+import OauthForm from "@/features/auth/_components/OauthForm";
+import EmailForm from "@/features/auth/_components/providers/Email/EmailForm";
 
 export default async function page() {
   return (

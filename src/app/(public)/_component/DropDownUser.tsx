@@ -1,14 +1,11 @@
 import LetterAvatar from "react-avatar";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   BookOpenIcon,
   ChevronDownIcon,
   Home,
   LayoutDashboard,
-  LogOutIcon,
 } from "lucide-react";
-import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,7 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { authClient } from "@/lib/auth-client";
+import Logout from "@/features/auth/_components/Logout";
 
 export default function DropDownUser({
   name,
@@ -31,22 +28,9 @@ export default function DropDownUser({
   email: string;
   image?: string | null;
 }) {
-  const router = useRouter();
-
   const computedLetter = name
     ? name.split(" ")[0].toUpperCase()
     : email[0].toUpperCase();
-
-  async function handleSignOut() {
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          toast.success("You're Signed Out Successfully");
-          router.replace("/login");
-        },
-      },
-    });
-  }
 
   return (
     <DropdownMenu>
@@ -110,10 +94,7 @@ export default function DropDownUser({
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleSignOut}>
-          <LogOutIcon size={16} className="opacity-60" aria-hidden="true" />
-          <span>Logout</span>
-        </DropdownMenuItem>
+        <Logout />
       </DropdownMenuContent>
     </DropdownMenu>
   );
