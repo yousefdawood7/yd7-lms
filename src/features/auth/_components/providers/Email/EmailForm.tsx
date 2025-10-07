@@ -5,11 +5,13 @@ import { useRouter } from "next/navigation";
 import { LoaderCircle, Send } from "lucide-react";
 import { toast } from "sonner";
 import { useSpinDelay } from "spin-delay";
+import { useName } from "@/app/(auth)/_contexts/NameContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 
 export default function EmailForm() {
+  const { name, setName } = useName();
   const [email, setEmail] = useState<string>("");
   const [isTransitionPending, startTransition] = useTransition();
   const isPending = useSpinDelay(isTransitionPending, {
@@ -48,6 +50,13 @@ export default function EmailForm() {
     <>
       <p className="text-xl font-semibold">Email</p>
       <Input
+        placeholder="Enter your full name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
+
+      <Input
         placeholder="me@example.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -56,7 +65,7 @@ export default function EmailForm() {
       <Button
         onClick={handleSignIn}
         className="font-semibold tracking-tight transition-opacity"
-        disabled={isPending || !email}
+        disabled={isPending || !email || !name}
       >
         {isPending ? (
           <>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 import { useSpinDelay } from "spin-delay";
+import { useName } from "@/app/(auth)/_contexts/NameContext";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -26,6 +27,7 @@ export default function EmailOTP({ email }: { email: string }) {
   const [isTransitioning, startTransition] = useTransition();
   const [OTP, setOTP] = useState<string>("");
   const router = useRouter();
+  const { name } = useName();
 
   const isPending = useSpinDelay(isTransitioning, {
     delay: 300,
@@ -39,7 +41,7 @@ export default function EmailOTP({ email }: { email: string }) {
         otp: OTP,
 
         fetchOptions: {
-          onSuccess: () => {
+          onSuccess: async () => {
             router.replace("/");
             toast.success("You signed in successfully");
           },

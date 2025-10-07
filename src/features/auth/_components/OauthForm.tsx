@@ -1,5 +1,5 @@
-import GithubLogin from "@/features/auth/providers/GithubLogin";
-import GoogleLogin from "@/features/auth/providers/GoogleLogin";
+import GithubLogin from "@/features/auth/_components/providers/GithubLogin";
+import GoogleLogin from "@/features/auth/_components/providers/GoogleLogin";
 
 export default function OauthForm() {
   return (
