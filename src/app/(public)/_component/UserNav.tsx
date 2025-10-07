@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import DropDownUser from "@/app/(public)/_component/DropDownUser";
-import ToggleTheme from "@/app/(public)/_component/ToggleTheme";
+import ToggleTheme from "@/components/theme/ToggleTheme";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 
