@@ -1,18 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeaderLogo from "public/header-logo.png";
+import { cn } from "@/lib/utils";
 
-export default function Logo() {
+type LogoProps = {
+  logoStyles?: string;
+  nameStyles?: string;
+};
+
+export default function Logo({ logoStyles, nameStyles }: LogoProps) {
   return (
     <Link href="/" className="flex items-center gap-3">
       <Image
         src={HeaderLogo}
-        className="bg-primary rounded-lg p-1.5"
+        className={cn("bg-primary rounded-lg p-1.5", logoStyles)}
         alt="Logo"
         width={60}
         height={60}
       />
-      <span className="hidden text-2xl font-semibold md:inline-block">
+      <span
+        className={cn(
+          "hidden text-2xl font-semibold md:inline-block",
+          nameStyles,
+        )}
+      >
         YD7 EDUCATION
       </span>
     </Link>
