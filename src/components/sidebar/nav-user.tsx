@@ -3,10 +3,11 @@
 import {
   IconCreditCard,
   IconDotsVertical,
-  IconLogout,
   IconNotification,
   IconUserCircle,
 } from "@tabler/icons-react";
+import { LucideLoaderCircle } from "lucide-react";
+import LetterAvatar from "@/components/LetterAvatar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -23,17 +24,31 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import Logout from "@/features/auth/_components/Logout";
+import { authClient } from "@/lib/auth-client";
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string;
-    email: string;
-    avatar: string;
-  };
-}) {
+export function NavUser() {
   const { isMobile } = useSidebar();
+  const { data: session, isPending } = authClient.useSession();
+
+  if (isPending || !session)
+    return (
+      <SidebarMenu>
+        <div className="flex justify-center">
+          <LucideLoaderCircle className="animate-spin text-center" />
+        </div>
+      </SidebarMenu>
+    );
+
+  const { name, email, image } = session.user;
+
+  const ImageFallback = image ? (
+    <AvatarImage src={image} alt={name} />
+  ) : (
+    <AvatarFallback className="rounded-lg font-semibold">
+      <LetterAvatar name={name} alt={`${name}'s Logo`} />
+    </AvatarFallback>
+  );
 
   return (
     <SidebarMenu>
@@ -45,13 +60,12 @@ export function NavUser({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg grayscale">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                {ImageFallback}
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
+                <span className="truncate font-medium">{name}</span>
                 <span className="text-muted-foreground truncate text-xs">
-                  {user.email}
+                  {email}
                 </span>
               </div>
               <IconDotsVertical className="ml-auto size-4" />
@@ -65,14 +79,11 @@ export function NavUser({
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                </Avatar>
+                <Avatar className="h-8 w-8 rounded-lg">{ImageFallback}</Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
+                  <span className="truncate font-medium">{name}</span>
                   <span className="text-muted-foreground truncate text-xs">
-                    {user.email}
+                    {email}
                   </span>
                 </div>
               </div>
@@ -93,10 +104,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <IconLogout />
-              Log out
-            </DropdownMenuItem>
+            <Logout />
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

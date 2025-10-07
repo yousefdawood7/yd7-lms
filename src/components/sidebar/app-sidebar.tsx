@@ -1,19 +1,11 @@
 "use client";
 
 import * as React from "react";
-import {
-  IconCamera,
-  IconFileAi,
-  IconFileDescription,
-  IconHelp,
-  IconListDetails,
-  IconSearch,
-  IconSettings,
-} from "@tabler/icons-react";
+import { IconListDetails } from "@tabler/icons-react";
 import { LayoutDashboard } from "lucide-react";
 import Logo from "@/app/(public)/_component/Logo";
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
+import { NavMain } from "@/components/sidebar/nav-main";
+import { NavUser } from "@/components/sidebar/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -25,12 +17,6 @@ import {
 } from "@/components/ui/sidebar";
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-
   navMain: [
     {
       title: "Dashboard",
@@ -64,7 +50,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );
