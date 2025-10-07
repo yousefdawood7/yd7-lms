@@ -1,4 +1,3 @@
-import LetterAvatar from "react-avatar";
 import Link from "next/link";
 import {
   BookOpenIcon,
@@ -6,6 +5,7 @@ import {
   Home,
   LayoutDashboard,
 } from "lucide-react";
+import LetterAvatar from "@/components/LetterAvatar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,10 +28,6 @@ export default function DropDownUser({
   email: string;
   image?: string | null;
 }) {
-  const computedLetter = name
-    ? name.split(" ")[0].toUpperCase()
-    : email[0].toUpperCase();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -44,7 +40,7 @@ export default function DropDownUser({
               <AvatarImage src={image} alt="Profile image" />
             ) : (
               <AvatarFallback className="font-semibold">
-                <LetterAvatar size="70" name={computedLetter} />
+                <LetterAvatar name={name} />
               </AvatarFallback>
             )}
           </Avatar>
