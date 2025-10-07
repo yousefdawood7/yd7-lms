@@ -6,9 +6,10 @@ import { cn } from "@/lib/utils";
 type LogoProps = {
   logoStyles?: string;
   nameStyles?: string;
+  isSidebar?: boolean;
 };
 
-export default function Logo({ logoStyles, nameStyles }: LogoProps) {
+export default function Logo({ logoStyles, nameStyles, isSidebar }: LogoProps) {
   return (
     <Link href="/" className="flex items-center gap-3">
       <Image
@@ -22,6 +23,7 @@ export default function Logo({ logoStyles, nameStyles }: LogoProps) {
         className={cn(
           "hidden text-2xl font-semibold md:inline-block",
           nameStyles,
+          `${isSidebar && "inline-block"}`,
         )}
       >
         YD7 EDUCATION

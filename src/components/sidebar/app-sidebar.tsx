@@ -41,7 +41,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <Logo nameStyles="text-xl tracking-tight" />
+              <Logo nameStyles="text-xl tracking-tight" isSidebar />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
