@@ -1,18 +1,11 @@
-import Link from "next/link";
-import {
-  BookOpenIcon,
-  ChevronDownIcon,
-  Home,
-  LayoutDashboard,
-} from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import LetterAvatar from "@/components/LetterAvatar";
+import DropDownLinks from "@/components/sidebar/DropDownLinks";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -61,34 +54,7 @@ export default function DropDownUser({
           </span>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem asChild>
-            <Link href={"/"}>
-              <Home size={16} className="opacity-60" aria-hidden="true" />
-              <span>Home</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href={"/"}>
-              <BookOpenIcon
-                size={16}
-                className="opacity-60"
-                aria-hidden="true"
-              />
-              <span>Courses</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href={"/"}>
-              <LayoutDashboard
-                size={16}
-                className="opacity-60"
-                aria-hidden="true"
-              />
-              <span>Dashboard</span>
-            </Link>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+        <DropDownLinks />
         <DropdownMenuSeparator />
         <Logout />
       </DropdownMenuContent>

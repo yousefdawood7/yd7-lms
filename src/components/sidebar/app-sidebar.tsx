@@ -1,8 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { IconListDetails } from "@tabler/icons-react";
-import { LayoutDashboard } from "lucide-react";
+import { LayoutDashboard, TvMinimalPlay } from "lucide-react";
 import Logo from "@/app/(public)/_component/Logo";
 import { NavMain } from "@/components/sidebar/nav-main";
 import { NavUser } from "@/components/sidebar/nav-user";
@@ -26,7 +25,7 @@ const data = {
     {
       title: "courses",
       url: "/dashboard/courses",
-      icon: IconListDetails,
+      icon: TvMinimalPlay,
     },
   ],
 };
