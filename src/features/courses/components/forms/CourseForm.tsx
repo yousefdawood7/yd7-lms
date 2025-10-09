@@ -10,6 +10,7 @@ import CourseField from "@/features/courses/components/forms/CourseField";
 import SelectCourseField, {
   type SelectItemType,
 } from "@/features/courses/components/forms/SelectCourseField";
+import { type CourseSchemaType } from "@/lib/zodSchemas";
 
 type SelectItemsFields = {
   [key: string]: SelectItemType[];
@@ -44,12 +45,17 @@ const selectItems: SelectItemsFields = {
 };
 
 export default function CourseForm() {
-  const form = useForm({
+  const form = useForm<CourseSchemaType>({
     defaultValues: {
       title: "",
       slug: "",
       description: "",
       fileKey: "",
+      category: "",
+      level: "Beginner",
+      status: "Draft",
+      price: 0,
+      duration: 0,
     },
   });
 
