@@ -15,19 +15,19 @@ export default function DropDownLinks() {
         </Link>
       </DropdownMenuItem>
       <DropdownMenuItem asChild>
-        <Link href={"/"}>
-          <TvMinimalPlay size={16} className="opacity-60" aria-hidden="true" />
-          <span>Courses</span>
-        </Link>
-      </DropdownMenuItem>
-      <DropdownMenuItem asChild>
-        <Link href={"/"}>
+        <Link href={"/dashboard"}>
           <LayoutDashboard
             size={16}
             className="opacity-60"
             aria-hidden="true"
           />
           <span>Dashboard</span>
+        </Link>
+      </DropdownMenuItem>
+      <DropdownMenuItem asChild>
+        <Link href={"/dashboard/courses"}>
+          <TvMinimalPlay size={16} className="opacity-60" aria-hidden="true" />
+          <span>Courses</span>
         </Link>
       </DropdownMenuItem>
     </DropdownMenuGroup>
