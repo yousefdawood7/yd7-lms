@@ -43,7 +43,7 @@ export default function CourseField({
   const classNameValue = cn(
     "w-full",
     children
-      ? `flex flex-col xs:flex-row items-end gap-y-5 ${compClassName}`.trim()
+      ? `flex flex-col xs:flex-row items-end gap-y-2 ${compClassName}`.trim()
       : compClassName,
   );
 
@@ -64,9 +64,10 @@ export default function CourseField({
                 />
               </FormControl>
             </aside>
+            <FormMessage className="xs:hidden mr-auto" />
             {children}
           </FormItem>
-          <FormMessage />
+          <FormMessage className="xs:block hidden" />
         </div>
       )}
     />
