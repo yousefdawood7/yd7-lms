@@ -1,5 +1,6 @@
 "use client";
 
+import { type Route } from "next";
 import Link from "next/link";
 import { type Icon, IconCirclePlusFilled } from "@tabler/icons-react";
 import { type LucideIcon } from "lucide-react";
@@ -21,7 +22,7 @@ export function NavMain({
 }: {
   items: {
     title: string;
-    url: string;
+    url: Route;
     icon?: LucideIcon | Icon;
   }[];
 }) {
@@ -45,9 +46,15 @@ export function NavMain({
         <SidebarMenu className="gap-3">
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title} className="gap-3.5">
-                {item.icon && <item.icon style={logoStyles} />}
-                <span className="text-lg">{item.title}</span>
+              <SidebarMenuButton
+                tooltip={item.title}
+                className="gap-3.5"
+                asChild
+              >
+                <Link href={item.url}>
+                  {item.icon && <item.icon style={logoStyles} />}
+                  <span className="text-lg">{item.title}</span>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

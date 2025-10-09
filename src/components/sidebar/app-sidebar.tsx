@@ -19,12 +19,12 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "/dashboard",
+      url: "/dashboard" as const,
       icon: LayoutDashboard,
     },
     {
       title: "Courses",
-      url: "/dashboard/courses",
+      url: "/dashboard/courses" as const,
       icon: TvMinimalPlay,
     },
   ],
