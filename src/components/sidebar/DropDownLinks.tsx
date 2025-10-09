@@ -1,4 +1,5 @@
-import { Home, LayoutDashboard, Link, TvMinimalPlay } from "lucide-react";
+import Link from "next/link";
+import { Home, LayoutDashboard, TvMinimalPlay } from "lucide-react";
 import {
   DropdownMenuGroup,
   DropdownMenuItem,

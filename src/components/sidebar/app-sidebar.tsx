@@ -23,7 +23,7 @@ const data = {
       icon: LayoutDashboard,
     },
     {
-      title: "courses",
+      title: "Courses",
       url: "/dashboard/courses",
       icon: TvMinimalPlay,
     },
