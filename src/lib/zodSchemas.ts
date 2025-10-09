@@ -31,11 +31,11 @@ export const courseSchema = z.object({
     .min(1, { error: "Please upload a valid file." }),
 
   price: z.coerce
-    .number({ error: "Price must be a number." })
+    .number<number>({ error: "Price must be a number." })
     .min(1, { error: "Price must be at least 1." }),
 
   duration: z.coerce
-    .number({ error: "Duration must be a number." })
+    .number<number>({ error: "Duration must be a number." })
     .min(1, { error: "Duration must be at least 1." }),
 
   level: z.enum(courseLevels, { error: "Please select a valid course level." }),

@@ -1,7 +1,8 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { WandSparkles } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Plus, WandSparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -10,7 +11,7 @@ import CourseField from "@/features/courses/components/forms/CourseField";
 import SelectCourseField, {
   type SelectItemType,
 } from "@/features/courses/components/forms/SelectCourseField";
-import { type CourseSchemaType } from "@/lib/zodSchemas";
+import { courseSchema, type CourseSchemaType } from "@/lib/zodSchemas";
 
 type SelectItemsFields = {
   [key: string]: SelectItemType[];
@@ -32,20 +33,21 @@ const selectItems: SelectItemsFields = {
   ],
 
   levels: [
-    { name: "beginner", value: "Beginner" },
-    { name: "intermediate", value: "Intermediate" },
-    { name: "advanced", value: "Advanced" },
+    { name: "Beginner", value: "Beginner" },
+    { name: "Intermediate", value: "Intermediate" },
+    { name: "Advanced", value: "Advanced" },
   ],
 
   status: [
-    { name: "draft", value: "Draft" },
-    { name: "published", value: "Published" },
+    { name: "Draft", value: "Draft" },
+    { name: "Published", value: "Published" },
     { name: "archived", value: "Archived" },
   ],
 };
 
 export default function CourseForm() {
   const form = useForm<CourseSchemaType>({
+    resolver: zodResolver(courseSchema),
     defaultValues: {
       title: "",
       slug: "",
@@ -61,26 +63,32 @@ export default function CourseForm() {
 
   return (
     <Form {...form}>
-      <form className="space-y-7">
+      <form
+        className="space-y-7"
+        onSubmit={form.handleSubmit((e) => {
+          console.log(e);
+        })}
+      >
         <CourseField
           name="title"
           label="Title"
           placeholder="Course Title"
           Field={Input}
         />
-        <aside className="xs:flex-row xs:gap-x-5 flex flex-col items-end gap-y-5">
-          <CourseField
-            name="slug"
-            label="Slug"
-            placeholder="Course Slug"
-            Field={Input}
-            className="w-full"
-          />
+
+        <CourseField
+          name="slug"
+          label="Slug"
+          placeholder="Course Slug"
+          Field={Input}
+          className="w-full"
+        >
           <Button className="xs:w-fit w-full py-5.5" type="button">
             <WandSparkles />
             <span>Generate Slug</span>
           </Button>
-        </aside>
+        </CourseField>
+
         <CourseField
           name="description"
           label="Description"
@@ -94,7 +102,7 @@ export default function CourseForm() {
           placeholder="Thumbnail url"
           Field={Input}
         />
-        <aside className="xs:grid-cols-2 grid grid-cols-1 gap-8">
+        <aside className="xs:grid-cols-2 grid grid-cols-1 items-start gap-8">
           <SelectCourseField
             name="category"
             label="Category"
@@ -126,6 +134,10 @@ export default function CourseForm() {
           placeholder="Course Status"
           selectItems={selectItems.status}
         />
+        <Button className="py-5.5">
+          <span>Create Course</span>
+          <Plus />
+        </Button>
       </form>
     </Form>
   );

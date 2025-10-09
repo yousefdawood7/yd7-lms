@@ -21,6 +21,7 @@ type CourseFieldProps = {
   name: string;
   label: string;
   Field: React.FC<FieldProps>;
+  children?: React.ReactNode;
   type?: string;
   placeholder?: string;
   className?: string;
@@ -34,25 +35,39 @@ export default function CourseField({
   className,
   Field,
   noPadding,
+  children,
 }: CourseFieldProps) {
   const form = useFormContext();
+  const compClassName = className || "";
+
+  const classNameValue = cn(
+    "w-full",
+    children
+      ? `flex flex-col xs:flex-row items-end gap-y-5 ${compClassName}`.trim()
+      : compClassName,
+  );
 
   return (
     <FormField
       name={name}
       control={form.control}
       render={({ field }) => (
-        <FormItem className={className || ""}>
-          <FormLabel className="text-lg">{label}</FormLabel>
-          <FormControl>
-            <Field
-              className={cn(!noPadding ? "py-5.5" : "")}
-              placeholder={placeholder || ""}
-              {...field}
-            />
-          </FormControl>
+        <div className="flex w-full flex-col gap-2">
+          <FormItem className={classNameValue}>
+            <aside className="flex w-full flex-col gap-2">
+              <FormLabel className="text-lg">{label}</FormLabel>
+              <FormControl>
+                <Field
+                  className={cn(!noPadding ? "py-5.5" : "")}
+                  placeholder={placeholder || ""}
+                  {...field}
+                />
+              </FormControl>
+            </aside>
+            {children}
+          </FormItem>
           <FormMessage />
-        </FormItem>
+        </div>
       )}
     />
   );
