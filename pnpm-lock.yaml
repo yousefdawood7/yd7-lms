@@ -86,6 +86,9 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@tiptap/extension-emoji':
+        specifier: ^3.6.6
+        version: 3.6.6(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))(@tiptap/pm@3.6.6)(@tiptap/suggestion@3.6.6(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))(@tiptap/pm@3.6.6))(emojibase@16.0.0)
       '@tiptap/pm':
         specifier: ^3.6.6
         version: 3.6.6
@@ -2240,6 +2243,13 @@ packages:
     peerDependencies:
       '@tiptap/extensions': ^3.6.6
 
+  '@tiptap/extension-emoji@3.6.6':
+    resolution: {integrity: sha512-sFnEPddn946fTt2Val3wTaCV/d7d3ej2QOoVHEVVJYsGs/RRl8KhWxBkPRsFMpBjhxA4MXwpPbqR2WqgAfW4+A==}
+    peerDependencies:
+      '@tiptap/core': ^3.6.6
+      '@tiptap/pm': ^3.6.6
+      '@tiptap/suggestion': ^3.6.6
+
   '@tiptap/extension-floating-menu@3.6.6':
     resolution: {integrity: sha512-2ZKhBIgCs88Mju/9Kv4ngY5D1luwX7Fb8yemc6kXp9pYNFfJnXYeVP/110dRHJUbRrKtGXmnz8I5cgL/nqGEVQ==}
     peerDependencies:
@@ -2341,6 +2351,12 @@ packages:
 
   '@tiptap/starter-kit@3.6.6':
     resolution: {integrity: sha512-pKTlQEdyiy6aebjpOyWzjxmyPHM6mUEOHhyAN9hxCpHhkDHcOt3+CX+YlodDtrIfNdPEDyrvsDlvtrEavSTQLw==}
+
+  '@tiptap/suggestion@3.6.6':
+    resolution: {integrity: sha512-usbjreMw4zPKv1pScl8TRQFTXiVBHfZRBgP+NM9Blin5D9FzHTItWyJPGeWAD4V4oIgUIbPbDnajfYR6VvFWHg==}
+    peerDependencies:
+      '@tiptap/core': ^3.6.6
+      '@tiptap/pm': ^3.6.6
 
   '@ts-morph/common@0.27.0':
     resolution: {integrity: sha512-Wf29UqxWDpc+i61k3oIOzcUfQt79PIT9y/MWfAGlrkjg6lBC1hwDECLXPVJAhWjiGbfBCxZd65F/LIZF3+jeJQ==}
@@ -3292,6 +3308,15 @@ packages:
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
 
+  emojibase-data@15.3.2:
+    resolution: {integrity: sha512-TpDyTDDTdqWIJixV5sTA6OQ0P0JfIIeK2tFRR3q56G9LK65ylAZ7z3KyBXokpvTTJ+mLUXQXbLNyVkjvnTLE+A==}
+    peerDependencies:
+      emojibase: '*'
+
+  emojibase@16.0.0:
+    resolution: {integrity: sha512-Nw2m7JLIO4Ou2X/yZPRNscHQXVbbr6SErjkJ7EooG7MbR3yDZszCv9KTizsXFc7yZl0n3WF+qUKIC/Lw6H9xaQ==}
+    engines: {node: '>=18.12.0'}
+
   empathic@2.0.0:
     resolution: {integrity: sha512-i6UzDscO/XfAcNYD75CfICkmfLedpyPDdozrLMmQc5ORaQcdMoc21OnlEylMIqI7U8eniKrPMxxtj8k0vhmJhA==}
     engines: {node: '>=14'}
@@ -3935,6 +3960,9 @@ packages:
   is-date-object@1.1.0:
     resolution: {integrity: sha512-PwwhEakHVKTdRNVOw+/Gyh0+MzlCl4R6qKvkhuvLtPMggI1WAHt9sOwZxQLSGpUaDnrdyDsomoRgNnCfKNSXXg==}
     engines: {node: '>= 0.4'}
+
+  is-emoji-supported@0.0.5:
+    resolution: {integrity: sha512-WOlXUhDDHxYqcSmFZis+xWhhqXiK2SU0iYiqmth5Ip0FHLZQAt9rKL5ahnilE8/86WH8tZ3bmNNNC+bTzamqlw==}
 
   is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
@@ -8296,6 +8324,17 @@ snapshots:
     dependencies:
       '@tiptap/extensions': 3.6.6(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))(@tiptap/pm@3.6.6)
 
+  '@tiptap/extension-emoji@3.6.6(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))(@tiptap/pm@3.6.6)(@tiptap/suggestion@3.6.6(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))(@tiptap/pm@3.6.6))(emojibase@16.0.0)':
+    dependencies:
+      '@tiptap/core': 3.6.6(@tiptap/pm@3.6.6)
+      '@tiptap/pm': 3.6.6
+      '@tiptap/suggestion': 3.6.6(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))(@tiptap/pm@3.6.6)
+      emoji-regex: 10.5.0
+      emojibase-data: 15.3.2(emojibase@16.0.0)
+      is-emoji-supported: 0.0.5
+    transitivePeerDependencies:
+      - emojibase
+
   '@tiptap/extension-floating-menu@3.6.6(@floating-ui/dom@1.7.4)(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))(@tiptap/pm@3.6.6)':
     dependencies:
       '@floating-ui/dom': 1.7.4
@@ -8431,6 +8470,11 @@ snapshots:
       '@tiptap/extension-text': 3.6.6(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))
       '@tiptap/extension-underline': 3.6.6(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))
       '@tiptap/extensions': 3.6.6(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))(@tiptap/pm@3.6.6)
+      '@tiptap/pm': 3.6.6
+
+  '@tiptap/suggestion@3.6.6(@tiptap/core@3.6.6(@tiptap/pm@3.6.6))(@tiptap/pm@3.6.6)':
+    dependencies:
+      '@tiptap/core': 3.6.6(@tiptap/pm@3.6.6)
       '@tiptap/pm': 3.6.6
 
   '@ts-morph/common@0.27.0':
@@ -9394,6 +9438,12 @@ snapshots:
 
   emoji-regex@9.2.2: {}
 
+  emojibase-data@15.3.2(emojibase@16.0.0):
+    dependencies:
+      emojibase: 16.0.0
+
+  emojibase@16.0.0: {}
+
   empathic@2.0.0: {}
 
   encodeurl@2.0.0: {}
@@ -10252,6 +10302,8 @@ snapshots:
     dependencies:
       call-bound: 1.0.4
       has-tostringtag: 1.0.2
+
+  is-emoji-supported@0.0.5: {}
 
   is-extglob@2.1.1: {}
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Emoji, { gitHubEmojis } from "@tiptap/extension-emoji";
 import MenuEditor from "@/features/editor/components/MenuEditor";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -10,8 +11,14 @@ export default function Editor() {
     // Don't render immediately on the server to avoid SSR issues
     immediatelyRender: false,
     shouldRerenderOnTransaction: true,
-    extensions: [StarterKit],
-    content: "<p>Hello World! 🌎️</p>",
+    extensions: [
+      StarterKit,
+      Emoji.configure({
+        emojis: gitHubEmojis,
+        enableEmoticons: true,
+      }),
+    ],
+    content: "",
 
     editorProps: {
       attributes: {

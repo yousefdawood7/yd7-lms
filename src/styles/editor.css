@@ -1,0 +1,28 @@
+/* For Fixing Text-Based Emoji issue */
+.ProseMirror {
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Noto Color Emoji",
+    "Segoe UI Symbol",
+    sans-serif;
+}
+
+/* Basic editor styles */
+.tiptap {
+  :first-child {
+    margin-top: 0;
+  }
+
+  [data-type="emoji"] {
+    img {
+      display: inline-block;
+      height: 1.1em;
+      width: 1.1em;
+    }
+  }
+}
