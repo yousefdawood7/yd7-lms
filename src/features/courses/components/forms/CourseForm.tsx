@@ -12,6 +12,7 @@ import SelectCourseField, {
   type SelectItemType,
 } from "@/features/courses/components/forms/SelectCourseField";
 import { courseSchema, type CourseSchemaType } from "@/lib/zodSchemas";
+import Editor from "@/features/editor/Editor";
 
 type SelectItemsFields = {
   [key: string]: SelectItemType[];
@@ -89,13 +90,16 @@ export default function CourseForm() {
           </Button>
         </CourseField>
 
-        <CourseField
+        {/* <CourseField
           name="description"
           label="Description"
           placeholder="Course Description"
           Field={Textarea}
           noPadding
-        />
+        /> */}
+
+        <Editor />
+
         <CourseField
           name="fileKey"
           label="Thumbnail Image"
