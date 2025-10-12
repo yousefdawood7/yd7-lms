@@ -12,7 +12,7 @@ import SelectCourseField, {
   type SelectItemType,
 } from "@/features/courses/components/forms/SelectCourseField";
 import { courseSchema, type CourseSchemaType } from "@/lib/zodSchemas";
-import Editor from "@/features/editor/Editor";
+import Editor from "@/features/editor/components/Editor";
 
 type SelectItemsFields = {
   [key: string]: SelectItemType[];
