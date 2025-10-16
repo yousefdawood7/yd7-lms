@@ -1,5 +1,5 @@
 import { type Editor } from "@tiptap/react";
-import TextTransform from "@/features/editor/components/EditorOptions/TextTransform";
+import TextTransform from "@/features/editor/components/EditorOptions/TextTransformItem";
 
 export default function MenuEditor({ editor }: { editor: Editor }) {
   return (

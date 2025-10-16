@@ -1,22 +1,20 @@
+import { type Editor } from "@tiptap/react";
 import {
-  type LucideIcon,
   Bold,
   Italic,
+  LucideIcon,
   Strikethrough,
   Underline,
 } from "lucide-react";
-import { type Editor } from "@tiptap/react";
-import { Toggle } from "@/components/ui/toggle";
-import { Separator } from "@/components/ui/separator";
 
-type TextTransformType = {
+type OptionsType = {
   label: string;
   icon: LucideIcon;
   action: (editor: Editor) => void;
   isActive: (editor: Editor) => boolean;
 };
 
-const textTransformOptions: TextTransformType[][] = [
+export const textTransformOptions: OptionsType[][] = [
   [
     {
       label: "Bold",
@@ -47,28 +45,3 @@ const textTransformOptions: TextTransformType[][] = [
     },
   ],
 ];
-
-export default function TextTransform({ editor }: { editor: Editor }) {
-  return (
-    <div className="flex gap-x-5">
-      <nav>
-        <ul className="flex gap-x-5">
-          {textTransformOptions[0].map(
-            ({ label, icon: Icon, action, isActive }) => (
-              <li key={label}>
-                <Toggle
-                  className="rounded-sm"
-                  pressed={isActive(editor)}
-                  onClick={() => action(editor)}
-                >
-                  <Icon className="size-6" />
-                </Toggle>
-              </li>
-            ),
-          )}
-        </ul>
-      </nav>
-      <Separator orientation="vertical" className="!h-10" />
-    </div>
-  );
-}

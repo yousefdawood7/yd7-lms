@@ -22,13 +22,13 @@ export default function Editor() {
 
     editorProps: {
       attributes: {
-        class: "min-h-[250px] border-b p-5.5 outline-none",
+        class: "min-h-[250px] border-b p-5.5 outline-none rounded-md",
       },
     },
   });
 
   return (
-    <article className="focus:border-primary border-1 transition-colors focus:outline-none">
+    <article className="focus:border-primary rounded-md border-1 border-b-0 transition-colors focus:outline-none">
       {editor ? (
         <>
           <MenuEditor editor={editor} />
