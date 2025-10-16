@@ -6,13 +6,12 @@ import { Plus, WandSparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import CourseField from "@/features/courses/components/forms/CourseField";
 import SelectCourseField, {
   type SelectItemType,
 } from "@/features/courses/components/forms/SelectCourseField";
-import { courseSchema, type CourseSchemaType } from "@/lib/zodSchemas";
 import Editor from "@/features/editor/components/Editor";
+import { courseSchema, type CourseSchemaType } from "@/lib/zodSchemas";
 
 type SelectItemsFields = {
   [key: string]: SelectItemType[];

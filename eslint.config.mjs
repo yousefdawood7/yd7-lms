@@ -44,6 +44,8 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
       "src/generated/**",
+      "src/components/ui/**",
+      "src/components/sidebar/**",
     ],
   },
 ];

@@ -2,10 +2,10 @@
 
 import Emoji, { gitHubEmojis } from "@tiptap/extension-emoji";
 import TextAlign from "@tiptap/extension-text-align";
-import MenuEditor from "@/features/editor/components/MenuEditor";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { LoaderCircle } from "lucide-react";
+import MenuEditor from "@/features/editor/components/MenuEditor";
 
 export default function Editor() {
   const editor = useEditor({

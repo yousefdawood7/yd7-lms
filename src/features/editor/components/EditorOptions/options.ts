@@ -1,4 +1,4 @@
-import { type Editor } from "@tiptap/react";
+import { isActive, type Editor } from "@tiptap/react";
 import {
   AlignCenter,
   AlignLeft,
@@ -9,8 +9,10 @@ import {
   Heading3,
   Italic,
   LucideIcon,
+  Redo,
   Strikethrough,
   Underline,
+  Undo,
 } from "lucide-react";
 
 type OptionsType = {
@@ -18,9 +20,27 @@ type OptionsType = {
   icon: LucideIcon;
   action: (editor: Editor) => void;
   isActive: (editor: Editor) => boolean;
+  disabledProp?: boolean;
 };
 
 export const textTransformOptions: OptionsType[][] = [
+  [
+    {
+      label: "Undo",
+      icon: Undo,
+      action: (editor) => editor.chain().focus().undo().run(),
+      isActive: (editor) => editor.can().chain().focus().undo().run(),
+      disabledProp: true,
+    },
+    {
+      label: "Redo",
+      icon: Redo,
+      action: (editor) => editor.chain().focus().redo().run(),
+      isActive: (editor) => editor.can().chain().focus().redo().run(),
+      disabledProp: true,
+    },
+  ],
+
   [
     {
       label: "Bold",
