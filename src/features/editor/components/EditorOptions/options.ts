@@ -1,5 +1,8 @@
 import { type Editor } from "@tiptap/react";
 import {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
   Bold,
   Heading1,
   Heading2,
@@ -71,6 +74,29 @@ export const textTransformOptions: OptionsType[][] = [
       action: (editor) =>
         editor.chain().focus().toggleHeading({ level: 3 }).run(),
       isActive: (editor) => editor.isActive("heading", { level: 3 }),
+    },
+  ],
+
+  [
+    {
+      label: "Align-Left",
+      icon: AlignLeft,
+      action: (editor) => editor.chain().focus().setTextAlign("left").run(),
+      isActive: (editor) => editor.isActive({ textAlign: "left" }),
+    },
+
+    {
+      label: "Align-Center",
+      icon: AlignCenter,
+      action: (editor) => editor.chain().focus().setTextAlign("center").run(),
+      isActive: (editor) => editor.isActive({ textAlign: "center" }),
+    },
+
+    {
+      label: "Align-Right",
+      icon: AlignRight,
+      action: (editor) => editor.chain().focus().setTextAlign("right").run(),
+      isActive: (editor) => editor.isActive({ textAlign: "right" }),
     },
   ],
 ];

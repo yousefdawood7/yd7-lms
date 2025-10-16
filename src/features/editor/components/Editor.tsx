@@ -1,6 +1,7 @@
 "use client";
 
 import Emoji, { gitHubEmojis } from "@tiptap/extension-emoji";
+import TextAlign from "@tiptap/extension-text-align";
 import MenuEditor from "@/features/editor/components/MenuEditor";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -13,6 +14,11 @@ export default function Editor() {
     shouldRerenderOnTransaction: true,
     extensions: [
       StarterKit,
+
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+        alignments: ["left", "center", "right"],
+      }),
       Emoji.configure({
         emojis: gitHubEmojis,
         enableEmoticons: true,

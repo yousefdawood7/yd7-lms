@@ -5,7 +5,7 @@ import { type Editor } from "@tiptap/react";
 import { Fragment } from "react";
 
 export default function TextTransformList({ editor }: { editor: Editor }) {
-  return textTransformOptions.slice(0, 2).map((transformOption, i) => (
+  return textTransformOptions.slice(0, 3).map((transformOption, i) => (
     <Fragment key={i}>
       {transformOption.map(({ label, icon: Icon, action, isActive }) => (
         <li key={label}>
