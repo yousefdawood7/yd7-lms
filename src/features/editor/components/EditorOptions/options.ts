@@ -1,4 +1,4 @@
-import { isActive, type Editor } from "@tiptap/react";
+import { type Editor } from "@tiptap/react";
 import {
   AlignCenter,
   AlignLeft,
@@ -7,6 +7,8 @@ import {
   Heading1,
   Heading2,
   Heading3,
+  List,
+  ListOrdered,
   Italic,
   LucideIcon,
   Redo,
@@ -94,6 +96,22 @@ export const textTransformOptions: OptionsType[][] = [
       action: (editor) =>
         editor.chain().focus().toggleHeading({ level: 3 }).run(),
       isActive: (editor) => editor.isActive("heading", { level: 3 }),
+    },
+  ],
+
+  [
+    {
+      label: "Unordered-List",
+      icon: List,
+      action: (editor) => editor.chain().focus().toggleBulletList().run(),
+      isActive: (editor) => editor.isActive("bulletList"),
+    },
+
+    {
+      label: "Ordered-List",
+      icon: ListOrdered,
+      action: (editor) => editor.chain().focus().toggleOrderedList().run(),
+      isActive: (editor) => editor.isActive("orderedList"),
     },
   ],
 

@@ -66,7 +66,7 @@ export default function CourseForm() {
       <form
         className="space-y-7"
         onSubmit={form.handleSubmit((e) => {
-          console.log(e);
+          // console.log(e);
         })}
       >
         <CourseField

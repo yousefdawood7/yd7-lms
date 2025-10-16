@@ -5,7 +5,7 @@ import { Toggle } from "@/components/ui/toggle";
 import { textTransformOptions } from "@/features/editor/components/EditorOptions/options";
 
 export default function TextTransformList({ editor }: { editor: Editor }) {
-  return textTransformOptions.slice(0, 3).map((transformOption, i) => (
+  return textTransformOptions.map((transformOption, i) => (
     <Fragment key={i}>
       {transformOption.map(
         ({ label, icon: Icon, action, isActive, disabledProp }) => (
