@@ -1,6 +1,9 @@
 import { type Editor } from "@tiptap/react";
 import {
   Bold,
+  Heading1,
+  Heading2,
+  Heading3,
   Italic,
   LucideIcon,
   Strikethrough,
@@ -42,6 +45,32 @@ export const textTransformOptions: OptionsType[][] = [
       icon: Strikethrough,
       action: (editor) => editor.chain().focus().toggleStrike().run(),
       isActive: (editor) => editor.isActive("strike"),
+    },
+  ],
+
+  [
+    {
+      label: "Heading-1",
+      icon: Heading1,
+      action: (editor) =>
+        editor.chain().focus().toggleHeading({ level: 1 }).run(),
+      isActive: (editor) => editor.isActive("heading", { level: 1 }),
+    },
+
+    {
+      label: "Heading-2",
+      icon: Heading2,
+      action: (editor) =>
+        editor.chain().focus().toggleHeading({ level: 2 }).run(),
+      isActive: (editor) => editor.isActive("heading", { level: 2 }),
+    },
+
+    {
+      label: "Heading-3",
+      icon: Heading3,
+      action: (editor) =>
+        editor.chain().focus().toggleHeading({ level: 3 }).run(),
+      isActive: (editor) => editor.isActive("heading", { level: 3 }),
     },
   ],
 ];
