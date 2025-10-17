@@ -11,6 +11,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
+import { type EditorProps } from "@/features/editor/components/Editor";
 
 type FieldProps = {
   className: string;
@@ -19,13 +20,14 @@ type FieldProps = {
 
 type CourseFieldProps = {
   name: string;
-  label: string;
-  Field: React.FC<FieldProps>;
+  label?: string;
+  Field: React.FC<FieldProps> | React.FC<EditorProps>;
   children?: React.ReactNode;
   type?: string;
   placeholder?: string;
   className?: string;
   noPadding?: boolean;
+  customValue?: boolean;
 };
 
 export default function CourseField({
@@ -36,6 +38,7 @@ export default function CourseField({
   Field,
   noPadding,
   children,
+  customValue,
 }: CourseFieldProps) {
   const form = useFormContext();
   const compClassName = className || "";
@@ -54,13 +57,17 @@ export default function CourseField({
       render={({ field }) => (
         <div className="flex w-full flex-col gap-2">
           <FormItem className={classNameValue}>
-            <aside className="flex w-full flex-col gap-2">
-              <FormLabel className="text-lg">{label}</FormLabel>
+            <aside className="flex w-full flex-col gap-2 overflow-auto">
+              {label && <FormLabel className="text-lg">{label}</FormLabel>}
               <FormControl>
                 <Field
+                  {...field}
                   className={cn(!noPadding ? "py-5.5" : "")}
                   placeholder={placeholder || ""}
-                  {...field}
+                  {...(customValue && {
+                    handleChange: (value) =>
+                      form.setValue(name, value, { shouldValidate: true }),
+                  })}
                 />
               </FormControl>
             </aside>

@@ -7,7 +7,11 @@ import StarterKit from "@tiptap/starter-kit";
 import { LoaderCircle } from "lucide-react";
 import MenuEditor from "@/features/editor/components/MenuEditor";
 
-export default function Editor() {
+export type EditorProps = {
+  handleChange?: (value: string) => void;
+};
+
+export default function Editor({ handleChange }: EditorProps) {
   const editor = useEditor({
     // Don't render immediately on the server to avoid SSR issues
     immediatelyRender: false,
@@ -25,6 +29,10 @@ export default function Editor() {
       }),
     ],
     content: "",
+
+    onUpdate: ({ editor }) => {
+      handleChange?.(editor.getText());
+    },
 
     editorProps: {
       attributes: {
