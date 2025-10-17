@@ -12,7 +12,6 @@ import SelectCourseField, {
 } from "@/features/courses/components/forms/SelectCourseField";
 import Editor from "@/features/editor/components/Editor";
 import { courseSchema, type CourseSchemaType } from "@/lib/zodSchemas";
-import { useState } from "react";
 
 type SelectItemsFields = {
   [key: string]: SelectItemType[];
@@ -66,8 +65,8 @@ export default function CourseForm() {
     <Form {...form}>
       <form
         className="space-y-7"
-        onSubmit={form.handleSubmit((e) => {
-          console.log(e);
+        onSubmit={form.handleSubmit(() => {
+          // console.log(e);
         })}
       >
         <CourseField

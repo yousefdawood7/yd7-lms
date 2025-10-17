@@ -7,15 +7,17 @@ import {
   Heading1,
   Heading2,
   Heading3,
+  Italic,
   List,
   ListOrdered,
-  Italic,
   LucideIcon,
   Redo,
+  SpellCheck2,
   Strikethrough,
   Underline,
   Undo,
 } from "lucide-react";
+import { spellCheck } from "@/features/editor/components/EditorOptions/Events/spellcheck";
 
 type OptionsType = {
   label: string;
@@ -23,6 +25,29 @@ type OptionsType = {
   action: (editor: Editor) => void;
   isActive: (editor: Editor) => boolean;
   disabledProp?: boolean;
+};
+
+export const spellCheckStore = {
+  subscribe: (callback: () => void) => {
+    const abortController = new AbortController();
+    const editor = document.querySelector(".tiptap");
+
+    editor?.addEventListener("spellcheck", () => callback(), {
+      signal: abortController.signal,
+    });
+
+    return () => abortController.abort();
+  },
+
+  getSnapshot: () => {
+    const editor = document.querySelector(".tiptap");
+    return editor?.getAttribute("spellcheck") === "true" ? true : false;
+  },
+
+  getServerSnapshot: () => {
+    // As Initial State
+    return false;
+  },
 };
 
 export const textTransformOptions: OptionsType[][] = [
@@ -135,6 +160,24 @@ export const textTransformOptions: OptionsType[][] = [
       icon: AlignRight,
       action: (editor) => editor.chain().focus().setTextAlign("right").run(),
       isActive: (editor) => editor.isActive({ textAlign: "right" }),
+    },
+  ],
+
+  [
+    {
+      label: "Spell-Checker",
+      icon: SpellCheck2,
+      action: (editor) => {
+        const isActive = editor.view.dom.getAttribute("spellcheck");
+        editor.view.dom.setAttribute(
+          "spellcheck",
+          isActive === "true" ? "false" : "true",
+        );
+        editor.view.dom.dispatchEvent(spellCheck);
+      },
+
+      isActive: (editor) =>
+        editor.view.dom.getAttribute("spellcheck") === "true" ? true : false,
     },
   ],
 ];
