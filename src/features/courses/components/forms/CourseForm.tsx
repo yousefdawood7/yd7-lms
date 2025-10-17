@@ -65,7 +65,7 @@ export default function CourseForm() {
     <Form {...form}>
       <form
         className="space-y-7"
-        onSubmit={form.handleSubmit((e) => {
+        onSubmit={form.handleSubmit(() => {
           // console.log(e);
         })}
       >

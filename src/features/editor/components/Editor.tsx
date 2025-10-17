@@ -2,16 +2,18 @@
 
 import Emoji, { gitHubEmojis } from "@tiptap/extension-emoji";
 import TextAlign from "@tiptap/extension-text-align";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { LoaderCircle } from "lucide-react";
-import MenuEditor from "@/features/editor/components/MenuEditor";
+import EditorLoader from "@/features/editor/components/EditorLoader";
+import TextEditor from "@/features/editor/components/TextEditor";
 
 export default function Editor() {
   const editor = useEditor({
     // Don't render immediately on the server to avoid SSR issues
+    content: "",
     immediatelyRender: false,
     shouldRerenderOnTransaction: true,
+
     extensions: [
       StarterKit,
 
@@ -24,7 +26,6 @@ export default function Editor() {
         enableEmoticons: true,
       }),
     ],
-    content: "",
 
     editorProps: {
       attributes: {
@@ -35,19 +36,7 @@ export default function Editor() {
 
   return (
     <article className="focus:border-primary rounded-md border-1 border-b-0 transition-colors focus:outline-none">
-      {editor ? (
-        <>
-          <MenuEditor editor={editor} />
-          <EditorContent editor={editor} />
-        </>
-      ) : (
-        <div className="flex min-h-[250px] flex-col items-center justify-center gap-y-2.5 border-b p-5.5 outline-none">
-          <LoaderCircle className="size-12 animate-spin" />
-          <span className="text-muted-foreground tracking-tight">
-            Editor Loading...
-          </span>
-        </div>
-      )}
+      {editor ? <TextEditor editor={editor} /> : <EditorLoader />}
     </article>
   );
 }
