@@ -57,13 +57,18 @@ export default function CourseField({
       render={({ field }) => (
         <div className="flex w-full flex-col gap-2">
           <FormItem className={classNameValue}>
-            <aside className="flex w-full flex-col gap-2 overflow-auto">
+            <aside
+              className={cn(
+                "flex w-full flex-col gap-2",
+                customValue && "overflow-auto",
+              )}
+            >
               {label && <FormLabel className="text-lg">{label}</FormLabel>}
               <FormControl>
                 <Field
-                  {...field}
                   className={cn(!noPadding ? "py-5.5" : "")}
                   placeholder={placeholder || ""}
+                  {...field}
                   {...(customValue && {
                     handleChange: (value) =>
                       form.setValue(name, value, { shouldValidate: true }),
