@@ -11,6 +11,7 @@ import SelectCourseField, {
   type SelectItemType,
 } from "@/features/courses/components/forms/SelectCourseField";
 import Editor from "@/features/editor/components/Editor";
+import Uploader from "@/features/imageUploader/components/Uploader";
 import { courseSchema, type CourseSchemaType } from "@/lib/zodSchemas";
 
 type SelectItemsFields = {
@@ -102,8 +103,9 @@ export default function CourseForm() {
           name="fileKey"
           label="Thumbnail Image"
           placeholder="Thumbnail url"
-          Field={Input}
+          Field={Uploader}
         />
+
         <aside className="xs:grid-cols-2 grid grid-cols-1 items-start gap-8">
           <SelectCourseField
             name="category"
