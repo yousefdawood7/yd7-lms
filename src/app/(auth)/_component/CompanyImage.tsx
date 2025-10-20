@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useEffectEvent, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import darkCompanyLogo from "public/dark-company-logo.png";
@@ -9,13 +9,14 @@ import lightCompanyLogo from "public/light-company-logo.png";
 export default function CompanyImage() {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const { resolvedTheme: theme } = useTheme();
-  const onMounting = useEffectEvent(() => {
+
+  const onMounting = useRef<() => void>(() => {
     setIsMounted(true);
   });
 
   // To Fix Hydrations mismatch
   useEffect(() => {
-    onMounting();
+    onMounting.current();
   }, []);
 
   return (
