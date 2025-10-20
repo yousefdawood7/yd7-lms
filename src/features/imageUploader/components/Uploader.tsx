@@ -44,7 +44,7 @@ export default function Uploader() {
         bgStyles="bg-destructive/50"
         iconStyles={"text-destructive"}
         buttonText={"Try Again!"}
-        btnStyles="bg-destructive"
+        btnStyles="bg-destructive hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60"
         content={
           <>
             <p className="-mb-3.5 font-semibold">Upload Failed</p>
