@@ -1,3 +1,4 @@
+import "server-only";
 import arcjet, { shield } from "@arcjet/next";
 
 import { env } from "./env";

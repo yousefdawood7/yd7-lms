@@ -23,6 +23,8 @@ const eslintConfig = [
           groups: [
             // Packages. `react` and `next` related packages come first.
             [
+              "server-only",
+              "client-onlt",
               "^react",
               "^next",
               "^@?\\w",
