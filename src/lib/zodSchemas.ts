@@ -53,4 +53,14 @@ export const courseSchema = z.object({
     .min(1, { error: "Slug cannot be empty." }),
 });
 
+export const fileUploadSchema = z.object({
+  fileName: z.string().min(1, { error: "File name cannot be empty." }),
+  contentType: z.string().min(1, { error: "ContentType cannot be empty." }),
+  size: z
+    .number({ error: "Size must be a number." })
+    .min(1, { error: "Size of a file cannot be empty." }),
+  isImage: z.boolean(),
+});
+
 export type CourseSchemaType = z.infer<typeof courseSchema>;
+export type fileUploadSchemaType = z.infer<typeof fileUploadSchema>;
