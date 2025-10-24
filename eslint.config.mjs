@@ -24,7 +24,7 @@ const eslintConfig = [
             // Packages. `react` and `next` related packages come first.
             [
               "server-only",
-              "client-onlt",
+              "client-only",
               "^react",
               "^next",
               "^@?\\w",
