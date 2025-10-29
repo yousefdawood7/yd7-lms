@@ -17,14 +17,14 @@ export const auth = betterAuth({
       async sendVerificationOTP({ email, otp, type }) {
         if (type === "sign-in") {
           await resend.emails.send({
-            from: "YD7 <onboarding@resend.dev>",
+            from: "YD7 <hello@yousefdawood.me>",
             to: [email],
             subject: "Verify your email address",
             react: EmailTemplate({ verificationCode: otp }),
 
             attachments: [
               {
-                path: "https://gcdnb.pbrd.co/images/cH72oyhwbWiY.png?o=1", // App logo
+                path: "https://i.ibb.co/ymBfsr4N/YD7-LMS-Company.png", // App logo
                 filename: "logo.png",
                 contentId: "logo-img",
               },
