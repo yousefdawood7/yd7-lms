@@ -21,7 +21,7 @@ export default function EmailTemplate({
     <Html>
       <Head />
       <Body style={main}>
-        <Preview>AWS Email Verification</Preview>
+        <Preview>YD7-LMS&apos;s Email Verification</Preview>
         <Container style={container}>
           <Section style={coverSection}>
             <Section style={{ padding: 0 }}>
@@ -37,14 +37,14 @@ export default function EmailTemplate({
                     <td
                       align="center"
                       style={{
-                        backgroundColor: "#27279b",
+                        backgroundColor: "#155dfb",
                         padding: "20px 0",
                       }}
                     >
                       <Img
                         src={"cid:logo-img"}
-                        width="320"
-                        height="150"
+                        width="330.5"
+                        height="132.5"
                         alt="YD7 LMS LOGO"
                         style={{
                           display: "block",
