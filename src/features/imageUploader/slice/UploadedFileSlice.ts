@@ -1,6 +1,10 @@
+import { initialUploadedImage } from "@/features/imageUploader/components/Uploader";
+
 export type UploadFileType = {
   fileName: string | null;
   fileType: string | null;
+  imageUrl: string | null;
+  objectUrl: string | null;
   size: number | null;
   uploading: boolean;
   progress: number;
@@ -12,7 +16,8 @@ export type ActionType = {
   payload?:
     | string
     | number
-    | { fileName: string; fileType: string; size: number };
+    | { type: "accepted"; fileName: string; fileType: string; size: number }
+    | { type: "finished"; imageUrl: string; objectUrl: string };
 };
 
 export function reducer(
@@ -21,7 +26,10 @@ export function reducer(
 ): UploadFileType {
   switch (action.type) {
     case "accepted": {
-      if (typeof action.payload === "object")
+      if (
+        typeof action.payload === "object" &&
+        action.payload.type === "accepted"
+      )
         return {
           ...prevState,
           progress: 0,
@@ -44,14 +52,25 @@ export function reducer(
     }
 
     case "finished": {
-      return {
-        ...prevState,
-        uploading: false,
-      };
+      if (
+        typeof action.payload === "object" &&
+        action.payload.type === "finished"
+      )
+        return {
+          ...prevState,
+          uploading: false,
+          imageUrl: action.payload.imageUrl,
+          objectUrl: action.payload.objectUrl,
+        };
+      throw new Error("Provide A Valid Payload");
     }
 
     case "rejected":
       return { ...prevState, error: true };
+
+    case "reset":
+      return { ...initialUploadedImage };
+
     default:
       throw new Error("Dispatched Unknown Event");
   }

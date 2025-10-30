@@ -1,7 +1,7 @@
 import { LoaderCircle } from "lucide-react";
-import { Counter } from "@/components/ui/shadcn-io/counter";
+import { Counter } from "@/components/ui/counter";
 
-export default function UploadLoadingState({
+export default function UploaderLoadingState({
   fileName,
   progress,
 }: {
@@ -15,7 +15,7 @@ export default function UploadLoadingState({
       </div>
 
       <article className="flex flex-col gap-y-2.5 text-center">
-        <p>Uploading File: {fileName}</p>
+        <p className="line-clamp-3">Uploading File: {fileName}</p>
         <div className="flex items-center justify-center gap-x-2">
           <p className="text-muted-foreground mb-2 text-sm">Uploading: </p>
           <Counter

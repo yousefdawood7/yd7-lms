@@ -194,3 +194,8 @@ iframe {
 #g_a11y_announcement {
   inset-inline-start: -10000px !important;
 }
+
+/* Add Radius To The Zoomed Image in the courses form */
+img[data-rmiz-modal-img] {
+  border-radius: var(--radius);
+}

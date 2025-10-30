@@ -3,8 +3,11 @@ import type { NextConfig } from "next";
 import "./src/lib/env";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   typedRoutes: true,
+
+  images: {
+    remotePatterns: [new URL("https://yd7-lms.t3.storage.dev/**")],
+  },
 };
 
 export default nextConfig;

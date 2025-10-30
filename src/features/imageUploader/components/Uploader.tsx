@@ -4,10 +4,10 @@ import axios from "axios";
 import { CloudUpload, Image } from "lucide-react";
 import { toast } from "sonner";
 import { useSpinDelay } from "spin-delay";
-import UploaderState, {
-  UPLOADER_STATE,
-} from "@/features/imageUploader/components/UploaderStates/UploaderState";
-import UploadLoadingState from "@/features/imageUploader/components/UploaderStates/UploadLoadingState";
+import UploaderLoadingState from "@/features/imageUploader/components/UploaderStates/UploaderLoadingState";
+import UploaderShowState from "@/features/imageUploader/components/UploaderStates/UploaderShowState";
+import UploaderState from "@/features/imageUploader/components/UploaderStates/UploaderState";
+import { URL_UPLOAD } from "@/features/imageUploader/constants/constants";
 import {
   ActionType,
   reducer as uploadedImageReducer,
@@ -15,17 +15,12 @@ import {
 } from "@/features/imageUploader/slice/UploadedFileSlice";
 import { cn } from "@/lib/utils";
 
-const URL_UPLOAD = "http://localhost:3000/api/s3/upload";
-
 const handleOnDropAccepted = async function (
   dispatch: React.ActionDispatch<[ActionType]>,
   files: File[],
 ) {
   const file = files[0];
-
-  const url = await handleFileUpload(dispatch, file);
-
-  console.log("UPLOAD ===> ", url);
+  await handleFileUpload(dispatch, file);
 };
 
 const handleOnDropRejected = function (
@@ -65,6 +60,7 @@ const handleFileUpload = async function (
     dispatch({
       type: "accepted",
       payload: {
+        type: "accepted",
         fileName: file.name,
         fileType: file.type,
         size: file.size,
@@ -87,8 +83,14 @@ const handleFileUpload = async function (
     });
 
     await uploadProgress;
-
-    dispatch({ type: "finished" });
+    dispatch({
+      type: "finished",
+      payload: {
+        type: "finished",
+        imageUrl: presignedURL.split("?")[0],
+        objectUrl: URL.createObjectURL(file),
+      },
+    });
 
     return presignedURL;
   } catch (error) {
@@ -97,9 +99,11 @@ const handleFileUpload = async function (
   }
 };
 
-const initialUploadedImage: UploadFileType = {
+export const initialUploadedImage: UploadFileType = {
   fileName: null,
   fileType: null,
+  imageUrl: null,
+  objectUrl: null,
   size: null,
   progress: 0,
   uploading: false,
@@ -127,6 +131,10 @@ export default function Uploader() {
     multiple: false,
     onDropAccepted: handleOnDropAccepted.bind(null, dispatch),
     onDropRejected: handleOnDropRejected.bind(null, dispatch),
+    noDrag:
+      uploadedImage.uploading ||
+      uploadedImage.progress === 100 ||
+      uploadedImage.imageUrl !== null,
   });
 
   return (
@@ -138,17 +146,31 @@ export default function Uploader() {
         ),
       })}
     >
-      <input {...getInputProps({ disabled: uploadedImage.uploading })} />
+      <input
+        {...getInputProps({
+          disabled: uploadedImage.uploading || uploadedImage.progress === 100,
+        })}
+      />
+      {!isUploading &&
+        uploadedImage.imageUrl &&
+        uploadedImage.objectUrl &&
+        uploadedImage.progress === 100 && (
+          <UploaderShowState
+            imageUrl={uploadedImage.imageUrl}
+            objectUrl={uploadedImage.objectUrl}
+            dispatch={dispatch}
+          />
+        )}
+
       {isUploading && uploadedImage.fileName && (
-        <UploadLoadingState
+        <UploaderLoadingState
           fileName={uploadedImage.fileName}
           progress={uploadedImage.progress}
         />
       )}
 
-      {/* {uploadedImage.error ? (
+      {uploadedImage.error && (
         <UploaderState
-          state={UPLOADER_STATE.ERROR}
           icon={Image}
           bgStyles="bg-destructive/50"
           iconStyles={"text-destructive"}
@@ -161,27 +183,32 @@ export default function Uploader() {
             </>
           }
         />
-      ) : (
-        <UploaderState
-          state={UPLOADER_STATE.NORMAL}
-          icon={CloudUpload}
-          bgStyles="bg-secondary/50 dark:bg-muted-foreground/15"
-          iconStyles={isDragActive ? "text-primary" : ""}
-          buttonText={isDragActive ? "DROP IT" : "Select File"}
-          content={
-            isDragActive ? (
-              <p className="font-semibold">Yup You&apos;re Good drop it here</p>
-            ) : (
-              <p className="font-semibold">
-                Drop your files here or{" "}
-                <span className="text-primary cursor-pointer font-bold">
-                  click to upload
-                </span>
-              </p>
-            )
-          }
-        />
-      )} */}
+      )}
+
+      {uploadedImage.imageUrl === null &&
+        !uploadedImage.uploading &&
+        !uploadedImage.error && (
+          <UploaderState
+            icon={CloudUpload}
+            bgStyles="bg-secondary/50 dark:bg-muted-foreground/15"
+            iconStyles={isDragActive ? "text-primary" : ""}
+            buttonText={isDragActive ? "DROP IT" : "Select File"}
+            content={
+              isDragActive ? (
+                <p className="font-semibold">
+                  Yup You&apos;re Good drop it here
+                </p>
+              ) : (
+                <p className="font-semibold">
+                  Drop your files here or{" "}
+                  <span className="text-primary cursor-pointer font-bold">
+                    click to upload
+                  </span>
+                </p>
+              )
+            }
+          />
+        )}
     </article>
   );
 }

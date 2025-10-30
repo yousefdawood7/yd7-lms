@@ -2,17 +2,11 @@ import { type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export enum UPLOADER_STATE {
-  NORMAL,
-  ERROR,
-}
-
 type UploaderStateProps = {
   icon: LucideIcon;
   bgStyles?: string;
   iconStyles?: string;
   btnStyles?: string;
-  state: UPLOADER_STATE;
   buttonText: string;
   content: React.ReactNode;
 };
