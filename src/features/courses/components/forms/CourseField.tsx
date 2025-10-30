@@ -10,8 +10,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { cn } from "@/lib/utils";
 import { type EditorProps } from "@/features/editor/components/Editor";
+import { cn } from "@/lib/utils";
 
 type FieldProps = {
   className: string;

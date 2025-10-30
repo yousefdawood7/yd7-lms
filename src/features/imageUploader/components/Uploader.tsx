@@ -3,9 +3,11 @@ import { type FileRejection, useDropzone } from "react-dropzone";
 import axios from "axios";
 import { CloudUpload, Image } from "lucide-react";
 import { toast } from "sonner";
+import { useSpinDelay } from "spin-delay";
 import UploaderState, {
   UPLOADER_STATE,
 } from "@/features/imageUploader/components/UploaderStates/UploaderState";
+import UploadLoadingState from "@/features/imageUploader/components/UploaderStates/UploadLoadingState";
 import {
   ActionType,
   reducer as uploadedImageReducer,
@@ -86,6 +88,8 @@ const handleFileUpload = async function (
 
     await uploadProgress;
 
+    dispatch({ type: "finished" });
+
     return presignedURL;
   } catch (error) {
     console.log(error);
@@ -108,6 +112,13 @@ export default function Uploader() {
     initialUploadedImage,
   );
 
+  const isUploading = useSpinDelay(uploadedImage.uploading, {
+    delay: 300,
+    minDuration: 350,
+  });
+
+  console.log(uploadedImage);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
       "image/*": [".jpeg", ".png"],
@@ -127,8 +138,15 @@ export default function Uploader() {
         ),
       })}
     >
-      <input {...getInputProps()} />
-      {uploadedImage.error ? (
+      <input {...getInputProps({ disabled: uploadedImage.uploading })} />
+      {isUploading && uploadedImage.fileName && (
+        <UploadLoadingState
+          fileName={uploadedImage.fileName}
+          progress={uploadedImage.progress}
+        />
+      )}
+
+      {/* {uploadedImage.error ? (
         <UploaderState
           state={UPLOADER_STATE.ERROR}
           icon={Image}
@@ -163,7 +181,7 @@ export default function Uploader() {
             )
           }
         />
-      )}
+      )} */}
     </article>
   );
 }

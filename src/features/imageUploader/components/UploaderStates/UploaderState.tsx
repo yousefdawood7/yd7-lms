@@ -18,7 +18,6 @@ type UploaderStateProps = {
 };
 
 export default function UploaderState({
-  state,
   icon: Icon,
   iconStyles,
   bgStyles,

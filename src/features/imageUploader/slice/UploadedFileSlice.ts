@@ -24,7 +24,6 @@ export function reducer(
       if (typeof action.payload === "object")
         return {
           ...prevState,
-          uploading: true,
           progress: 0,
           fileName: action.payload.fileName,
           fileType: action.payload.fileType,
@@ -32,6 +31,23 @@ export function reducer(
           error: false,
         };
       throw new Error("Provide A Valid Payload");
+    }
+
+    case "progress": {
+      if (typeof action.payload !== "number")
+        throw new Error("Provide A Valid Payload");
+      return {
+        ...prevState,
+        uploading: true,
+        progress: action.payload,
+      };
+    }
+
+    case "finished": {
+      return {
+        ...prevState,
+        uploading: false,
+      };
     }
 
     case "rejected":
