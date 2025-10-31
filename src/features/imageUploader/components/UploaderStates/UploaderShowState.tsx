@@ -102,9 +102,15 @@ export default function UploaderShowState({
         </DialogContent>
       </Dialog>
 
-      <article>
-        <ImageZoom className="relative size-50 overflow-hidden rounded-md py-5 sm:size-60">
-          <Image src={objectUrl} alt="uploaded image" fill unoptimized />
+      <article className="flex h-full flex-col items-center justify-center">
+        <ImageZoom className="relative h-[95%] w-xl overflow-hidden rounded-md py-5 sm:w-2xl">
+          <Image
+            src={objectUrl}
+            className="object-contain"
+            alt="uploaded image"
+            fill
+            unoptimized
+          />
         </ImageZoom>
       </article>
     </div>
