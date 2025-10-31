@@ -46,14 +46,18 @@ export default function UploaderShowState({
     objectUrl: string,
   ) {
     startTransition(async () => {
-      await DeleteUploadedImage(imageUrl);
-      toast.success("Image deleted successfully");
-      dispatch({ type: "reset" });
-      URL.revokeObjectURL(objectUrl);
-      onChange("");
-      startTransition(() => {
-        setIsOpen(false);
-      });
+      try {
+        await DeleteUploadedImage(imageUrl);
+        toast.success("Image deleted successfully");
+        dispatch({ type: "reset" });
+        URL.revokeObjectURL(objectUrl);
+        onChange("");
+        startTransition(() => {
+          setIsOpen(false);
+        });
+      } catch {
+        toast.error("Failed to delete image. Please try again.");
+      }
     });
   };
 

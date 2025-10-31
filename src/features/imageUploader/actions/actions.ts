@@ -8,17 +8,14 @@ export async function DeleteUploadedImage(imageUrl: string) {
   const Key = imageUrl.split("/").pop();
 
   try {
-    const test = await S3.send(
+    await S3.send(
       new DeleteObjectCommand({
         Bucket: env.NEXT_PUBLIC_AWS_BUCKET_NAME,
         Key: Key,
       }),
     );
-
-    console.log(test);
-    return true;
   } catch (error) {
     console.log(error);
-    return false;
+    throw new Error("Failed to delete image from S3");
   }
 }
