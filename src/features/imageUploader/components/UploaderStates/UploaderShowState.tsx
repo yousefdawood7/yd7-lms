@@ -22,10 +22,12 @@ import { type ActionType } from "@/features/imageUploader/slice/UploadedFileSlic
 
 export default function UploaderShowState({
   dispatch,
+  onChange,
   imageUrl,
   objectUrl,
 }: {
   dispatch: React.Dispatch<ActionType>;
+  onChange: (imageUrl: string) => void;
   imageUrl: string;
   objectUrl: string;
 }) {
@@ -39,6 +41,7 @@ export default function UploaderShowState({
 
   const handleDeleteImage = function (
     dispatch: React.ActionDispatch<[ActionType]>,
+    onChange: (imageUrl: string) => void,
     imageUrl: string,
     objectUrl: string,
   ) {
@@ -47,7 +50,7 @@ export default function UploaderShowState({
       toast.success("Image deleted successfully");
       dispatch({ type: "reset" });
       URL.revokeObjectURL(objectUrl);
-
+      onChange("");
       startTransition(() => {
         setIsOpen(false);
       });
@@ -86,6 +89,7 @@ export default function UploaderShowState({
               onClick={handleDeleteImage.bind(
                 null,
                 dispatch,
+                onChange,
                 imageUrl,
                 objectUrl,
               )}

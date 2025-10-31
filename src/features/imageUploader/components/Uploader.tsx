@@ -17,10 +17,11 @@ import { cn } from "@/lib/utils";
 
 const handleOnDropAccepted = async function (
   dispatch: React.ActionDispatch<[ActionType]>,
+  onChange: (imageUrl: string) => void,
   files: File[],
 ) {
   const file = files[0];
-  await handleFileUpload(dispatch, file);
+  await handleFileUpload(dispatch, onChange, file);
 };
 
 const handleOnDropRejected = function (
@@ -45,6 +46,7 @@ const handleOnDropRejected = function (
 
 const handleFileUpload = async function (
   dispatch: React.ActionDispatch<[ActionType]>,
+  onChange: (imageUrl: string) => void,
   file: File,
 ) {
   try {
@@ -92,6 +94,7 @@ const handleFileUpload = async function (
       },
     });
 
+    onChange?.(presignedURL.split("?")[0]);
     return presignedURL;
   } catch (error) {
     console.log(error);
@@ -110,7 +113,11 @@ export const initialUploadedImage: UploadFileType = {
   error: false,
 };
 
-export default function Uploader() {
+export default function Uploader({
+  onChange,
+}: {
+  onChange: (imageUrl: string) => void;
+}) {
   const [uploadedImage, dispatch] = useReducer(
     uploadedImageReducer,
     initialUploadedImage,
@@ -129,7 +136,7 @@ export default function Uploader() {
     },
     maxSize: 15 * 1048576, // max Size of 15mb
     multiple: false,
-    onDropAccepted: handleOnDropAccepted.bind(null, dispatch),
+    onDropAccepted: handleOnDropAccepted.bind(null, dispatch, onChange),
     onDropRejected: handleOnDropRejected.bind(null, dispatch),
     noDrag:
       uploadedImage.uploading ||
@@ -156,9 +163,10 @@ export default function Uploader() {
         uploadedImage.objectUrl &&
         uploadedImage.progress === 100 && (
           <UploaderShowState
+            dispatch={dispatch}
+            onChange={onChange}
             imageUrl={uploadedImage.imageUrl}
             objectUrl={uploadedImage.objectUrl}
-            dispatch={dispatch}
           />
         )}
 
