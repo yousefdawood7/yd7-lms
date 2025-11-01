@@ -50,13 +50,19 @@ export default function UploaderShowState({
         await DeleteUploadedImage(imageUrl);
         toast.success("Image deleted successfully");
         dispatch({ type: "reset" });
+
         URL.revokeObjectURL(objectUrl);
         onChange("");
+
         startTransition(() => {
           setIsOpen(false);
         });
-      } catch {
-        toast.error("Failed to delete image. Please try again.");
+      } catch (error) {
+        // prettier-ignore
+        if (error instanceof Error)
+          toast.error(error.message);
+        else
+          toast.error("Failed to delete image");
       }
     });
   };
