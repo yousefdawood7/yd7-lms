@@ -27,7 +27,7 @@ export default function AuthLayout({
       <div className="w-full max-w-[450px]">
         <NameProvider>{children}</NameProvider>
       </div>
-      <footer className="text-muted-foreground max-w-[386px] text-center leading-[1.5] text-balance">
+      <footer className="text-muted-foreground max-w-[386px] text-center leading-normal text-balance">
         By clicking continue, you agree to our{" "}
         <span className="hover:text-primary cursor-pointer underline hover:underline">
           Terms of service

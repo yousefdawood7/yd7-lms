@@ -98,6 +98,12 @@ const handleFileUpload = async function (
     return presignedURL;
   } catch (error) {
     console.log(error);
+
+    if (error instanceof axios.AxiosError)
+      toast.error(
+        error.response?.data?.error || "Something Went Wrong. Try Again!",
+      );
+    else toast.error("Something Went Wrong. Try Again!");
     dispatch({ type: "rejected" });
   }
 };

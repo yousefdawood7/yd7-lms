@@ -1,7 +1,8 @@
-import "server-only";
+// import "server-only";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { emailOTP, oneTap } from "better-auth/plugins";
+import { admin } from "better-auth/plugins";
 import EmailTemplate from "@/features/emails/components/EmailTemplate";
 import { PrismaClient } from "@/generated/prisma";
 
@@ -12,6 +13,7 @@ const prisma = new PrismaClient();
 export const auth = betterAuth({
   plugins: [
     oneTap(), // Add the One Tap server plugin
+    admin(),
 
     emailOTP({
       async sendVerificationOTP({ email, otp, type }) {
@@ -24,7 +26,7 @@ export const auth = betterAuth({
 
             attachments: [
               {
-                path: "https://i.ibb.co/ymBfsr4N/YD7-LMS-Company.png", // App logo
+                path: "https://i.ibb.co/ymBfsr4N/YD7-LMS-Company.png", // App's logo
                 filename: "logo.png",
                 contentId: "logo-img",
               },
