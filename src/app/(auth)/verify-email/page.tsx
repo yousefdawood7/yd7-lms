@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import EmailOTP from "@/features/auth/_components/providers/Email/EmailOTP";
 
 type PageProps = {
@@ -11,9 +11,9 @@ export default async function page({ searchParams }: PageProps) {
   if (!email) {
     return (
       <Card>
-        <CardHeader className="text-center text-2xl">
+        <CardContent className="text-center text-2xl">
           <CardTitle>No email provided</CardTitle>
-        </CardHeader>
+        </CardContent>
       </Card>
     );
   }
