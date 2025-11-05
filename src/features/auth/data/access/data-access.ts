@@ -1,9 +1,10 @@
 import { request } from "@arcjet/next";
 import { isValidRole } from "@/features/auth/data/access/role";
+import { ServerSession } from "@/lib/auth";
 import { aj } from "@/utils/arcjet-rules";
 
 type IsValidAccessReturnType =
-  | { error: false; sessionID: string }
+  | { error: false; session: ServerSession; sessionID: string }
   | { error: true; message: string };
 
 export async function isValidAccess(
@@ -24,5 +25,9 @@ export async function isValidAccess(
       };
   }
 
-  return { error: false, sessionID: adminSession.user.id };
+  return {
+    error: false,
+    sessionID: adminSession.user.id,
+    session: adminSession,
+  };
 }

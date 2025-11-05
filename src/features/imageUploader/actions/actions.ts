@@ -1,7 +1,7 @@
 "use server";
 
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
-import { isValidAccess } from "@/features/auth/data/access/action-access";
+import { isValidAccess } from "@/features/auth/data/access/data-access";
 import { env } from "@/lib/env";
 import { S3 } from "@/lib/s3";
 

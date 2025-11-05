@@ -1,6 +1,6 @@
 "use server";
 
-import { isValidAccess } from "@/features/auth/data/access/action-access";
+import { isValidAccess } from "@/features/auth/data/access/data-access";
 import { prisma } from "@/lib/prisma";
 import { courseSchema, CourseSchemaType } from "@/lib/zodSchemas";
 
