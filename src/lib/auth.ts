@@ -54,3 +54,5 @@ export const auth = betterAuth({
     provider: "postgresql",
   }),
 });
+
+export type ServerSession = typeof auth.$Infer.Session;
