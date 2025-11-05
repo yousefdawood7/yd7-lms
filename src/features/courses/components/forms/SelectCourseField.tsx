@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/select";
 
 export type SelectItemType = {
-  name: string;
   value: string;
 };
 
@@ -51,7 +50,7 @@ export default function SelectCourseField({
             </FormControl>
             <SelectContent>
               {selectItems.map((item) => (
-                <SelectItem key={item.name} value={item.name}>
+                <SelectItem key={item.value} value={item.value}>
                   {item.value}
                 </SelectItem>
               ))}

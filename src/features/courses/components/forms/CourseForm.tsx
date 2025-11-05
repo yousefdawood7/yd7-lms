@@ -26,30 +26,26 @@ type SelectItemsFields = {
 
 const selectItems: SelectItemsFields = {
   categories: [
-    { name: "development", value: "Development" },
-    { name: "business", value: "Business" },
-    { name: "finance", value: "Finance" },
-    { name: "it_software", value: "IT & Software" },
-    { name: "office_productivity", value: "Office Productivity" },
-    { name: "personal_development", value: "Personal Development" },
-    { name: "design", value: "Design" },
-    { name: "marketing", value: "Marketing" },
-    { name: "health_fitness", value: "Health & Fitness" },
-    { name: "music", value: "Music" },
-    { name: "teaching_academics", value: "Teaching & Academics" },
+    { value: "Development" },
+    { value: "Business" },
+    { value: "Finance" },
+    { value: "IT & Software" },
+    { value: "Office Productivity" },
+    { value: "Personal Development" },
+    { value: "Design" },
+    { value: "Marketing" },
+    { value: "Health & Fitness" },
+    { value: "Music" },
+    { value: "Teaching & Academics" },
   ],
 
   levels: [
-    { name: "Beginner", value: "Beginner" },
-    { name: "Intermediate", value: "Intermediate" },
-    { name: "Advanced", value: "Advanced" },
+    { value: "Beginner" },
+    { value: "Intermediate" },
+    { value: "Advanced" },
   ],
 
-  status: [
-    { name: "Draft", value: "Draft" },
-    { name: "Published", value: "Published" },
-    { name: "archived", value: "Archived" },
-  ],
+  status: [{ value: "Draft" }, { value: "Published" }, { value: "Archived" }],
 };
 
 const handleSlugify = function (text: string) {
