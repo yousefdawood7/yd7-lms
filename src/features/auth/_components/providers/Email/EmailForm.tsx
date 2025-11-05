@@ -34,11 +34,11 @@ export default function EmailForm() {
           },
 
           onError: (error) => {
-            console.log(error.error.message);
+            console.log(error);
             toast.error(
-              error.error.message === "Invalid email"
-                ? "Invalid email address"
-                : "Something went wrong while signing you in",
+              error.error.message ||
+                error.error.statusText ||
+                "Something went wrong while signing you in",
             );
           },
         },
