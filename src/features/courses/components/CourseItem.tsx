@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CodeXml, LayoutPanelLeft, Timer } from "lucide-react";
+import {
+  CodeXml,
+  EllipsisVertical,
+  Eye,
+  LayoutPanelLeft,
+  Pencil,
+  Timer,
+  Trash2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,12 +18,51 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import CourseLogoDetails from "@/features/courses/components/CourseLogoDetails";
 import { GetCoursesType } from "@/features/courses/queries/queries";
 
 export default function CourseItem({ course }: { course: GetCoursesType }) {
   return (
-    <Card className="w-full min-w-[300px] flex-1 overflow-hidden rounded-md py-0">
+    <Card className="relative w-full min-w-[300px] flex-1 overflow-hidden rounded-md py-0">
+      <DropdownMenu>
+        <DropdownMenuTrigger className="bg-popover absolute top-3 right-3 rounded-sm p-1.5">
+          <EllipsisVertical />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuGroup>
+            <DropdownMenuItem asChild>
+              <Link href={`/courses/${course.slug}/edit`}>
+                <Pencil />
+                Edit Course
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href={`/courses/${course.slug}`}>
+                <Eye />
+                View Course
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem asChild>
+              <Link href={`/courses/${course.slug}/delete`}>
+                <Trash2 className="text-destructive" />
+                Delete Course
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
       <Image
         src={course.fileKey}
         alt={course.title}
